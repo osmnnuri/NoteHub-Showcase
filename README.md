@@ -12,36 +12,51 @@
 
 ## Proje hakkında
 
-NoteHub, notlarını cihazında tutmanı sağlayan temel bir not uygulamasıdır.
+NoteHub, başlık ve içerikten oluşan notlarını cihazında tutmanı sağlayan temel
+bir not uygulamasıdır. Notlar en yeniden eskiye listelenir; liste veritabanı
+değiştikçe kendiliğinden güncellenir.
 
 ## Özellikler
 
 | | |
 |---|---|
-| **Not ekleme** | Yeni not oluşturma |
-| **Not listesi** | Notları liste halinde görüntüleme |
-| **Düzenleme ve silme** | Kayıtlı notları güncelleme ya da kaldırma |
-| **Yerel kayıt** | Notlar cihazda saklanır |
+| **Not ekleme** | Başlık ve içerikle yeni not oluşturma |
+| **Not listesi** | Notlar en yeniden eskiye, oluşturulma zamanıyla listelenir |
+| **Kaydırarak silme** | Notu yana kaydırarak silme |
+| **Canlı liste** | Ekleme ve silme sonrası liste anında güncellenir |
+| **Yerel kayıt** | Notlar Room veritabanında yalnızca cihazda saklanır |
+
+## Nasıl çalışıyor?
+
+```
+NotesFragment / AddFragment  ◄──  NoteViewModel (LiveData)
+                                        │
+                                  NoteRepository
+                                        │
+                                Room (NoteDao, Flow)
+```
 
 ## Kullanılan teknolojiler
 
 | Katman | Teknoloji |
 |---|---|
 | Dil | Kotlin |
-| Arayüz | RecyclerView, ViewBinding |
+| Arayüz | Fragment, RecyclerView, ViewBinding |
+| Mimari | MVVM, Repository, Coroutines |
 | Gezinme | Navigation |
-| Yerel veri | Room |
+| Yerel veri | Room (Flow → LiveData) |
 | Geliştirme ortamı | Android Studio |
 
 Uygulamadaki görseller yapay zekâ ile üretildi.
 
 ## Neden yaptım?
 
-Android ve Kotlin becerilerimi geliştirmek ve pratik yapmak için.
+Android ve Kotlin becerilerimi geliştirmek, MVVM ve Room ile katmanlı bir yapı
+kurmayı pratik etmek için.
 
 ## Kaynak kod
 
-Kaynak kod özel bir depoda tutuluyor.
+Kaynak kod özel bir depoda tutuluyor; inceleme için talep üzerine paylaşılabilir.
 
 ## İletişim
 
